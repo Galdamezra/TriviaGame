@@ -4,6 +4,7 @@
 //Score variables
 var correctScore    = 0;
 var incorrectScore  = 0;
+var counter;
 
 //Functions
 //========================================
@@ -22,10 +23,10 @@ var clockRunning = false;
 
 //Stopwatch object
 var stopwatch = {
-  time: 120,
+  time: 10,
 
   start: function() {
-
+    clearInterval(counter);
     //USe setInterval tp start the count and set the clock to running
     if(!clockRunning) {
       counter = setInterval(stopwatch.count, 1000);
@@ -36,15 +37,14 @@ var stopwatch = {
   stop: function() {
 
     //  Stop the counter at 00:00 and alert game over
-    if(--time < 0) {
-
       alert("GAME OVER!");
       clearInterval(counter);
 
-    }
-
   },
   count: function() {
+    if(stopwatch.time <= 0) {
+      stopwatch.stop();
+    }
 
     //decrease time by 1
     stopwatch.time--
